@@ -3,4 +3,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("<h1>Hallo dit is een test</h1>")
+    myDict = {'insert_me':"wow dit is exact hetzelfde als met php yaml files"}
+    return render(request, 'noviwebshopapp/index.html', context=myDict)
