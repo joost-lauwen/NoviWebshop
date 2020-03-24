@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends './base.html' %}
+    {% block content %}
+        <h1>Registreren:</h1>
+        <div class="container">
+            <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary" value="Registreren">
+            </form>
+        </div>
+    {% endblock %}

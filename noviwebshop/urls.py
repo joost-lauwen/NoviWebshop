@@ -19,6 +19,6 @@ from noviwebshopapp import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('noviwebshopapp/', include('noviwebshopapp.urls')),
+    path('', include('noviwebshopapp.urls')),
     path('admin/', admin.site.urls),
 ]

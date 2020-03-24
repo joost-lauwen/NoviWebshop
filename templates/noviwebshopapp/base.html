@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  {% load static %}
+  {% block title %}<title>NOVI Schilderij Verhuur</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Add additional CSS in static file -->
+    <link rel="stylesheet" href="{% static 'noviwebshopapp/css/indexstyle.css' %}">
+  </head>
+
+  <body>
+    <div class="container-navbar">
+      {% block navbar %}
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{% url 'noviwebshopapp:index' %}">Novi Schilderij Verhuur</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'noviwebshopapp:index' %}">Schilderijen <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mijn Schilderijen </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'noviwebshopapp:Registreren' %}">Registreren </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'noviwebshopapp:Registreren' %}">Uploaden</a>
+            </li>
+          </ul>
+        </div>
+        </nav>
+      {% endblock %}
+     </div>
+
+     <div class="container-content">
+        {% block content %}
+      
+        {% endblock %}
+      </div>
+  </body>
+</html>
