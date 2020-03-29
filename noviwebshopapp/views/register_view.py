@@ -1,41 +1,21 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
-from noviwebshopapp.forms import NewUserForm, UserProfileInfoForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.views.generic import FormView
+from noviwebshopapp.forms import UserSignUpForm
 
-def registration(request):
+class SignUp(FormView):
+    form_class = UserSignUpForm
+    success_url = reverse_lazy("noviwebshopapp:index")
+    template_name = "noviwebshopapp/registration.html"
 
-    registered = False 
+    def form_valid(self, form):
+        form.save()
+        username = self.request.POST['username']
+        password = self.request.POST['password1']
 
-    if request.method == "POST":
-        registration_form = NewUserForm(data=request.POST)
-        profile_form = UserProfileInfoForm(data=request.POST)
+        user = authenticate(username=username,password=password)
+        login(self.request, user)
 
-        if registration_form.is_valid() and profile_form.is_valid():
-            
-            user = registration_form.save()
-            user.set_password(user.password)
-            user.save()
-
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            if 'profile_pic' in request.FILES:
-                profile.profile_pic = request.FILES['profile_pic']
-
-            profile.save()
-
-            registered = True
-
-        else:
-            print(registration_form.errors, profile_form.errors)
-    
-    else: 
-        registration_form = NewUserForm()
-        profile_form = UserProfileInfoForm()
-    
-    return render(request, 'noviwebshopapp/registration.html', {'registration_form':registration_form,
-                                                                'profile_form':profile_form,
-                                                                'registered':registered
-                                                                })
+        return HttpResponseRedirect(self.get_success_url())

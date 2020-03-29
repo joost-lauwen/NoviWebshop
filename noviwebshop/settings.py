@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'bootstrap4',
     'noviwebshopapp'
 ]
 
@@ -139,3 +140,5 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL= '/'
+LOGOUT_REDIRECT_URL='/'
