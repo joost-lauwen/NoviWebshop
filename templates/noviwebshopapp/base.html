@@ -23,18 +23,28 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'noviwebshopapp:index' %}">Schilderijen <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
               <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mijn Schilderijen </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'noviwebshopapp:Registreren' %}">Uploaden </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'noviwebshopapp:Registreren' %}">Registreren </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'noviwebshopapp:Registreren' %}">Inloggen  </a>
-            </li>
+
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Uitloggen</a>
+              </li>
+
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'noviwebshopapp:Registreren' %}">Registreren </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'noviwebshopapp:Inloggen' %}">Inloggen </a>
+              </li>
+
+            {% endif %} {% endcomment %}
+
           </ul>
         </div>
         </nav>

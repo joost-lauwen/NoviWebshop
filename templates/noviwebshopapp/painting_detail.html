@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+{% extends './base.html' %}
+    {% block content %}
+        <div class="container">
+            <div class="jumbotron">
+                <h1>{{ painting_detail.name }}</h1>
+                <h2>{{ painting_detail.description }}</h2>
+
+                <div class="image-container">
+                    <img src="{{ painting_detail.image.url }}"></img>
+                </div>
+
+                <p>Gemaakt door: {{ painting_detail.author }}</p>
+                <p>€{{ painting_detail.price }} p/m</p>
+
+                <div>
+                    <p><a class="btn btn-warning" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Bewerken</a></p>
+                </div>
+            </div>
+        </div>
+{% endblock %}
