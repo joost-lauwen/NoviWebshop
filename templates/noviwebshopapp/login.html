@@ -1,19 +1,13 @@
+<!DOCTYPE html>
 {% extends './base.html' %}
+{% load bootstrap4 %}
 {% block content %}
-
-<div class="jumbotron">
-    <h1>Inloggen: </h1>
-    <form action="{% url 'noviwebshopapp:Inloggen' %}" method="post">
-        {% csrf_token %}
-        <label for="username">Gebruikersnaam: </label>
-        <input type="text" name="username" placeholder="Gebruikersnaam">
-
-        <label for="password">Wachtwoord: </label>
-        <input type="password" name="password">
-
-        <input type="submit" name="login" value="Login">
-    </form>
-
+<div class="container">
+  <h1>Inloggen</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-primary" value="Inloggen">
+  </form>
 </div>
-
-{% endblock content %}
+{% endblock %}
