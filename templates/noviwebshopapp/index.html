@@ -9,7 +9,9 @@
                 <ol>
                     {% for painting in painting_list %}
                         <h2><a href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}" class="painting-detail-link">{{ painting.name }}</a></h2>
-                        <img src="{{ painting.image.url }}">
+                        <div class="image-container">
+                            <img src="{{ painting.image.url }}">
+                        </div>
                         <p>Gemaakt door: {{ painting.author }}</p>
                         <p>€{{ painting.price }} p/m</p>
                     {% endfor %}
