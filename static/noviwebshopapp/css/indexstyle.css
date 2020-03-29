@@ -1,5 +1,5 @@
 h1 {
-    color: blue;
+    color: orange;
 }
 
 table, th, td {
@@ -8,4 +8,18 @@ table, th, td {
 
 .container-navbar {
     padding-bottom: 75px;
+}
+
+.image-container {
+    size: 100rem;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.painting-detail-link {
+    color: orange !important;
 }

@@ -2,28 +2,19 @@
 
 {% extends './base.html' %}
     {% block content %}
-        <h1>Hier komen zoveel mooie schilderijen he bizar!</h1>
-        <h2>Here are your access records:</h2>
+        <div class="container">
+            <h1>Schilderijen</h1>
 
-        <div class="djangotwo">
-            {% if access_records %}
-            <table>
-                <thead>
-                    <th>Site Name</th>
-                    <th>Date Accessed</th>
-                </thead>
-            
-                {% for acc in access_records %}
-                <tr>
-                    <td>{{ acc.name }}</td>
-                    <td>{{ acc.date }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% else %}
-                <p>NO ACCES RECORDS FOUND</p>
-            {% endif %}
+            <div class="jumbotron">
+                <ol>
+                    {% for painting in painting_list %}
+                        <h2><a href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}" class="painting-detail-link">{{ painting.name }}</a></h2>
+                        <img src="{{ painting.image.url }}">
+                        <p>Gemaakt door: {{ painting.author }}</p>
+                        <p>€{{ painting.price }} p/m</p>
+                    {% endfor %}
+                </ol>
+            </div>
+
         </div>
-        <a class="btn btn-primary" href="{% url 'noviwebshopapp:Registreren' %}">Registreren</a>
-
 {% endblock %}

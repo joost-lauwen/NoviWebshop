@@ -1,8 +1,7 @@
 from django.contrib import admin
-from noviwebshopapp.models import AccesRecord, Painting, Webpage, UserProfileInfo
-# Register your models here.
+from noviwebshopapp.models.painting import Painting
+from noviwebshopapp.models.user_profile_info import UserProfileInfo
 
-admin.site.register(AccesRecord)
+# Register your models here.
 admin.site.register(Painting)
-admin.site.register(Webpage)
 admin.site.register(UserProfileInfo)

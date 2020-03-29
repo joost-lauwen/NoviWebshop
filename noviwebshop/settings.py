@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'noviwebshopapp'
 ]
 
@@ -136,3 +137,5 @@ STATICFILES_DIRS = [
 #Media
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+
+LOGIN_URL = '/noviwebshopapp/login/'
