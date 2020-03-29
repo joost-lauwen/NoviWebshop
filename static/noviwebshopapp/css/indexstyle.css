@@ -11,7 +11,7 @@ table, th, td {
 }
 
 .image-container {
-    size: 100rem;
+    width: 20rem;
 }
 
 img {

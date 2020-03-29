@@ -138,4 +138,4 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-LOGIN_URL = '/noviwebshopapp/login/'
+LOGIN_URL = '/login/'
