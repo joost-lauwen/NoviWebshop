@@ -20,4 +20,3 @@ class Painting(models.Model):
 
     def get_absolute_url(self):
         return reverse("noviwebshopapp:painting_detail", kwargs={"pk": self.pk})
-    
