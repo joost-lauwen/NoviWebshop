@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 
 {% extends './base.html' %}
-    {% block content %}
-        <div class="container">
-            <div class="jumbotron">
-                <h1>{{ painting_detail.name }}</h1>
-                <h2>{{ painting_detail.description }}</h2>
+{% load auth_extras %}
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h1>{{ painting_detail.name }}</h1>
+    <h2>{{ painting_detail.description }}</h2>
 
-                <div class="image-container">
-                    <img src="{{ painting_detail.image.url }}"></img>
-                </div>
+    <div class="image-container">
+      <img src="{{ painting_detail.image.url }}"></img>
+    </div>
 
-                <p>Gemaakt door: {{ painting_detail.author }}</p>
-                <p>€{{ painting_detail.price }} p/m</p>
+    <p>Gemaakt door: {{ painting_detail.author.get_full_name }}</p>
+    <p>€{{ painting_detail.price }} p/m</p>
 
-                <div>
-                    <p><a class="btn btn-warning" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Bewerken</a></p>
-                </div>
-            </div>
-        </div>
+    {% if request.user|has_group:"Teachers" and request.user.get_full_name == painting_detail.author.get_full_name %}
+    <div>
+      <div>
+        <p><a class="btn btn-warning" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Bewerken</a></p>
+      </div>
+      <div>
+        <p><a class="btn btn-danger" href="{% url 'noviwebshopapp:delete_painting' pk=painting_detail.pk %}">Verwijderen</a></p>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
 {% endblock %}

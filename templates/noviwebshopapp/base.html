@@ -3,6 +3,7 @@
 
 <head>
   {% load static %}
+  {% load auth_extras %}
   {% block title %}<title>NOVI Schilderij Verhuur</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,9 +28,13 @@
           <li class="nav-item">
             <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mijn Schilderijen </a>
           </li>
+
+          {% if request.user|has_group:"Teachers" %}
           <li>
             <a href="{% url 'noviwebshopapp:create_painting' %}" class="nav-link">Upload een schilderij</a>
           </li>
+          {% endif %}
+          
           <li class="nav-item">
             <a class="nav-link" href="{% url 'noviwebshopapp:logout' %}">Uitloggen</a>
           </li>
