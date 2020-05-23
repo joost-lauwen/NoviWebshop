@@ -9,11 +9,15 @@
     <h2>{{ painting_detail.description }}</h2>
 
     <div class="image-container">
-      <img src="{{ painting_detail.image.url }}"></img>
+      <img class="painting" src="{{ painting_detail.image.url }}"></img>
     </div>
 
     <p>Gemaakt door: {{ painting_detail.author.get_full_name }}</p>
     <p>€{{ painting_detail.price }} p/m</p>
+
+    {% if user.is_authenticated and not request.user|has_group:"Teachers" and painting_detail.available == True %}
+      <p><a class="btn btn-info" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Huren</a></p>
+    {% endif %}
 
     {% if request.user|has_group:"Teachers" and request.user.get_full_name == painting_detail.author.get_full_name %}
     <div>
