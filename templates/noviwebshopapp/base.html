@@ -26,15 +26,15 @@
           {% if user.is_authenticated %}
 
           <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mijn Schilderijen </a>
+            <a class="nav-link" href="{% url 'noviwebshopapp:user_paintings_list' %}" tabindex="-1" aria-disabled="true">Mijn Schilderijen </a>
           </li>
 
           {% if request.user|has_group:"Teachers" %}
           <li>
             <a href="{% url 'noviwebshopapp:create_painting' %}" class="nav-link">Upload een schilderij</a>
           </li>
-          {% endif %}
-          
+         {% endif %}
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'noviwebshopapp:logout' %}">Uitloggen</a>
           </li>

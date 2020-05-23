@@ -4,3 +4,4 @@ from .register_view import *
 from .upload_painting_view import *
 from .update_painting_view import *
 from .delete_painting_view import *
+from .user_paintings_list import *

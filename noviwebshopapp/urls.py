@@ -29,4 +29,7 @@ urlpatterns = [
     path('registreren/',
         views.register_view.SignUp.as_view(),
         name='signup'),
+    path('mypaintings',
+        views.user_paintings_list.UserPaintingsListView.as_view(),
+        name='user_paintings_list'),
 ]

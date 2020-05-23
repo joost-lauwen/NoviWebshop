@@ -17,6 +17,29 @@ class PaintingForm(forms.ModelForm):
             'description':forms.Textarea(attrs={'class':'textareaclass'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].label = 'Naam'
+        self.fields['description'].label = 'Beschrijving'
+        self.fields['image'].label = 'Afbeelding'
+        self.fields['price'].label = 'Prijs'
+
+class HirePaintingForm(forms.ModelForm):
+
+    class Meta():
+        model = Painting
+        fields = ('rented_from', 'rented_till')
+
+        widgets = {
+            'rented_from':forms.SelectDateWidget(empty_label=("Jaar", "Maand", "Dag")),
+            'rented_till':forms.SelectDateWidget(empty_label=("Jaar", "Maand", "Dag")),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['rented_from'].label = 'Huren van'
+        self.fields['rented_till'].label = 'Huren tot'
+
 class UserSignUpForm(UserCreationForm):
 
     class Meta():
@@ -31,15 +54,3 @@ class UserSignUpForm(UserCreationForm):
         self.fields['last_name'].label = 'Achternaam'
         self.fields['password1'].label = 'Wachtwoord'
         self.fields['password2'].label = 'Wachtwoord herhalen'
-
-# class NewUserForm(forms.ModelForm):
-#     password = forms.CharField(widget=forms.PasswordInput())
-#
-#     class Meta():
-#         model = User
-#         fields = ('username', 'email', 'password')
-#
-# class UserProfileInfoForm(forms.ModelForm):
-#     class Meta():
-#         model = UserProfileInfo
-#         fields = ('role', 'profile_pic')

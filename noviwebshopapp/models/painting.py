@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import date
 
 class Painting(models.Model):
     painting_id = models.AutoField(primary_key=True)
@@ -20,3 +21,9 @@ class Painting(models.Model):
 
     def get_absolute_url(self):
         return reverse("noviwebshopapp:painting_detail", kwargs={"pk": self.pk})
+
+    @property
+    def is_overdue(self):
+        if self.rented_till and date.today() > self.rented_till:
+            return True
+        return False
