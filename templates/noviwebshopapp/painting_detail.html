@@ -5,31 +5,50 @@
 {% block content %}
 <div class="container">
   <div class="jumbotron">
-    <h1>{{ painting_detail.name }}</h1>
-    <h2>{{ painting_detail.description }}</h2>
+    <div class="painting-detail-container">
+      <h1>{{ painting_detail.name }}</h1>
+      <h1> {{ order_detail.name }} </h1>
+      <h2>{{ painting_detail.description }}</h2>
 
-    <div class="image-container">
-      <img class="painting" src="{{ painting_detail.image.url }}"></img>
-    </div>
+      <div class="image-container">
+        <img class="painting" src="{{ painting_detail.image.url }}"></img>
+      </div>
+      <p>Gemaakt door: {{ painting_detail.author.get_full_name }}</p>
+      <p>{{ painting_detail.price }} BTC p/m</p>
 
-    <p>Gemaakt door: {{ painting_detail.author.get_full_name }}</p>
-    <p>€{{ painting_detail.price }} p/m</p>
-
-    {% if user.is_authenticated and not request.user|has_group:"Teachers" and painting_detail.available == True %}
+      {% if user.is_authenticated and not request.user|has_group:"Teachers" and painting_detail.available == True %}
       <p><a class="btn btn-info" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Huren</a></p>
-    {% endif %}
+      {% endif %}
 
-    {% if request.user|has_group:"Teachers" and request.user.get_full_name == painting_detail.author.get_full_name %}
-    <div>
+      {% if user.is_authenticated and not request.user|has_group:"Teachers" and painting_detail.available == False and order_detail.payment_status == False %}
+      <form action="https://www.coinpayments.net/index.php" method="post">
+        <input type="hidden" name="cmd" value="_pay">
+        <input type="hidden" name="reset" value="1">
+        <input type="hidden" name="merchant" value="ac3ef82e5138b278c6ddd3a4ce004972">
+        <input type="hidden" name="item_name" value="{{ painting_detail.name }}">
+        <input type="hidden" name="currency" value="BTC">
+        <input type="hidden" name="amountf" value="{{ order_detail.total_amount }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="allow_quantity" value="0">
+        <input type="hidden" name="want_shipping" value="0">
+        <input type="hidden" name="success_url" value="painting/<int:pk>/">
+        <input type="hidden" name="cancel_url" value="painting/<int:pk>/">
+        <input type="hidden" name="allow_extra" value="0">
+        <input type="image" src="https://www.coinpayments.net/images/pub/buynow-wide-yellow.png" alt="Buy Now with CoinPayments.net">
+      </form>
+      {% endif %}
+
+      {% if request.user|has_group:"Teachers" and request.user.get_full_name == painting_detail.author.get_full_name %}
       <div>
-        <p><a class="btn btn-warning" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Bewerken</a></p>
+        <div>
+          <p><a class="btn btn-warning" href="{% url 'noviwebshopapp:update_painting' pk=painting_detail.pk %}">Bewerken</a></p>
+        </div>
+        <div>
+          <p><a class="btn btn-danger" href="{% url 'noviwebshopapp:delete_painting' pk=painting_detail.pk %}">Verwijderen</a></p>
+        </div>
       </div>
-      <div>
-        <p><a class="btn btn-danger" href="{% url 'noviwebshopapp:delete_painting' pk=painting_detail.pk %}">Verwijderen</a></p>
-      </div>
+      {% endif %}
     </div>
-    {% endif %}
-
   </div>
 </div>
 {% endblock %}

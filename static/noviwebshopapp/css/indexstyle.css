@@ -20,6 +20,12 @@ table, th, td {
     object-fit: contain;
 }
 
+.painting-detail-container {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
 .painting-detail-link {
     color: orange !important;
 }

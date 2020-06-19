@@ -4,7 +4,7 @@ from django.urls import reverse
 from datetime import date
 
 class Painting(models.Model):
-    painting_id = models.AutoField(primary_key=True)
+    painting= models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now=True)
     description = models.CharField(max_length=250)
@@ -27,3 +27,6 @@ class Painting(models.Model):
         if self.rented_till and date.today() > self.rented_till:
             return True
         return False
+
+    def get_rented_months(self, rented_till, rented_from):
+        return (rented_till.year - rented_from.year) * 12 + rented_till.month - rented_from.month
