@@ -14,8 +14,8 @@ class PaintingForm(forms.ModelForm):
         fields = ('name', 'description', 'image', 'price')
 
         widgets = {
-            'name':forms.TextInput(attrs={'class':'textinputclass'}),
-            'description':forms.Textarea(attrs={'class':'textareaclass'}),
+            'name':forms.TextInput(attrs={'class':'form-control'}),
+            'description':forms.Textarea(attrs={'class':'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):

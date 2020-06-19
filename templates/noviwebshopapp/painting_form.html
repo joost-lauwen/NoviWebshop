@@ -18,7 +18,9 @@
 
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form.as_p }}
+      <div class="form-group">
+        {{ form.as_p }}
+      </div>
       <input type="submit" class="btn btn-primary" value="Doorgaan">
     </form>
 
