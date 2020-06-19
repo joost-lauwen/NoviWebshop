@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from noviwebshopapp.models import UserProfileInfo
 from noviwebshopapp.models import Painting
+from noviwebshopapp.models import Order
 
 class PaintingForm(forms.ModelForm):
 

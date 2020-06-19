@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 
 {% extends './base.html' %}
-    {% block content %}
-        <div class="container">
-            <h1>Mijn Schilderijen</h1>
+{% block content %}
+<div class="container">
+  <h1>Mijn Schilderijen</h1>
 
-            <div class="jumbotron">
-                <ol>
-                    {% for painting in painting_list %}
-                    <div href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}">
-                        <h2><a href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}" class="painting-detail-link">{{ painting.name }}</a></h2>
-                        <div class="image-container">
-                            <img class="painting" src="{{ painting.image.url }}">
-                        </div>
-                        <p>Gemaakt door: {{ painting.author.get_full_name }}</p>
-                        <p>€{{ painting.price }} p/m</p>
-                      </div>
-                    {% endfor %}
-                </ol>
-            </div>
-
+  <div class="jumbotron">
+    <ol>
+      {% for painting in painting_list %}
+      <div class="painting-detail-container">
+        <h2><a href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}" class="painting-detail-link">{{ painting.name }}</a></h2>
+        <div class="image-container">
+          <img class="painting" src="{{ painting.image.url }}">
         </div>
+        <p>Gemaakt door: {{ painting.author.get_full_name }}</p>
+        <p>{{ painting.price }} BTC p/m</p>
+      </div>
+      <hr>
+      {% endfor %}
+    </ol>
+  </div>
+
+</div>
 {% endblock %}

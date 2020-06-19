@@ -21,7 +21,7 @@
             <h2 class="card-title"><a href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}" class="painting-detail-link">{{ painting.name }}</a></h2>
             <p class="card-text">{{ painting.description }}</p>
             <p class="card-text">Gemaakt door: {{ painting.author.get_full_name }}</p>
-            <p class="card-text">€{{ painting.price }} p/m</p>
+            <p class="card-text">{{ painting.price }} BTC p/m</p>
             <a href="{% url 'noviwebshopapp:painting_detail' pk=painting.pk %}" class="stretched-link"></a>
 
             {% if not request.user|has_group:"Teachers" and user.is_authenticated %}
