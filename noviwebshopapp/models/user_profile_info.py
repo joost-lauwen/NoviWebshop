@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Model class for extra information about the user. Extends the default django
+# user model.
+
 class UserProfileInfo(models.Model):
     role_choices = [
                     ('teacher', 'Leraar'),
@@ -14,4 +17,3 @@ class UserProfileInfo(models.Model):
 
     def __str__(self):
         return self.user.username
-    

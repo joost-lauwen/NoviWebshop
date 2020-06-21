@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from .painting import Painting
 
+# Model for the order class. This model stores the transactions.
+
 class Order(models.Model):
     order = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, default="Order-test")

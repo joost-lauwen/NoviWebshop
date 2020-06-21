@@ -2,11 +2,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from datetime import datetime
 
 from noviwebshopapp.models import UserProfileInfo
 from noviwebshopapp.models import Painting
 from noviwebshopapp.models import Order
 
+# Class that defines the form to upload/update a painting.
 class PaintingForm(forms.ModelForm):
 
     class Meta():
@@ -25,6 +27,7 @@ class PaintingForm(forms.ModelForm):
         self.fields['image'].label = 'Afbeelding'
         self.fields['price'].label = 'Prijs'
 
+# Class that defines the form to hire a painting.
 class HirePaintingForm(forms.ModelForm):
 
     class Meta():
@@ -32,8 +35,8 @@ class HirePaintingForm(forms.ModelForm):
         fields = ('rented_from', 'rented_till')
 
         widgets = {
-            'rented_from':forms.SelectDateWidget(empty_label=("Jaar", "Maand", "Dag")),
-            'rented_till':forms.SelectDateWidget(empty_label=("Jaar", "Maand", "Dag")),
+            'rented_from':forms.SelectDateWidget(empty_label=("Jaar", "Maand", "Dag"), attrs={'class':'form-control'}),
+            'rented_till':forms.SelectDateWidget(empty_label=("Jaar", "Maand", "Dag"), attrs={'class':'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -41,6 +44,7 @@ class HirePaintingForm(forms.ModelForm):
         self.fields['rented_from'].label = 'Huren van'
         self.fields['rented_till'].label = 'Huren tot'
 
+# Class that defines the form to create a new user.
 class UserSignUpForm(UserCreationForm):
 
     class Meta():

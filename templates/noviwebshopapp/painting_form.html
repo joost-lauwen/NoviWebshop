@@ -6,15 +6,15 @@
 
 <div class="container">
   <div class="jumbotron">
-    <h1>
-      {% if not form.instance.pk %}
-      Upload een schilderij
-      {% elif request.user|has_group:"Teachers" %}
-      Update je schilderij
-      {% else %}
-      Schilderij huren
-      {% endif %}
-    </h1>
+
+    {% if not form.instance.pk %}
+    <h1>Upload een schilderij</h1>
+    {% elif request.user|has_group:"Teachers" %}
+    <h1>Update je schilderij</h1>
+    {% else %}
+    <h1>Schilderij huren</h1>
+    <a><b>LET OP:</b> Het schilderij kan alleen gehuurd worden voor een periode van 3 maanden tot 1 jaar.</a>
+    {% endif %}
 
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
