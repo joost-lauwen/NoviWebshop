@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView
 from noviwebshopapp.forms import UserSignUpForm
 
+# Class that handles the signup page.
 class SignUp(FormView):
     form_class = UserSignUpForm
     success_url = reverse_lazy("noviwebshopapp:index")

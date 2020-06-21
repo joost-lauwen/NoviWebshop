@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from noviwebshopapp.models.painting import Painting
 from noviwebshopapp.forms import PaintingForm
 
+# Class that handles the upload page of a painting. Login is required.
 class UploadPaintingView(LoginRequiredMixin, CreateView):
 
     login_url = '/login'
